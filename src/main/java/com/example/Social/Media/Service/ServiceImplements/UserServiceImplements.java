@@ -31,18 +31,45 @@ public class UserServiceImplements implements UserService{
     }
 
     @Override
-    public UserDto findUserById(Integer UserId) {
-        return null;
+    public UserDto findUserById(Integer userId) {
+
+       Optional<User> optionalUser=userRepository.findById(userId);
+
+       if(optionalUser.isEmpty()){
+           throw new RuntimeException(" user is not present: "+ userId);
+       }
+       User user= optionalUser.get();
+       return UserMapper.mapToUserDto(user);
+
+
     }
 
     @Override
     public UserDto findUserByEmail(String email) {
-        return null;
+        Optional<User> optionalUser=userRepository.findByEmail(email);
+        if(optionalUser.isEmpty()){
+            throw new RuntimeException("User is not present with email: "+email);
+        }
+        User user=optionalUser.get();
+
+        return UserMapper.mapToUserDto(user);
     }
 
     @Override
-    public UserDto followUser(Integer userId1, Integer UserId2) {
-        return null;
+    public UserDto followUser(Integer userId1, Integer userId2) {
+        UserDto userDto1=findUserById(userId1);
+        UserDto userDto2=findUserById(userId2);
+
+        userDto2.getFollowers().add(userDto1.getId());
+        userDto1.getFollowings().add(userDto2.getId());
+
+        User user=userRepository.save(UserMapper.mapToUser(userDto1));
+
+        userRepository.save(UserMapper.mapToUser(userDto2));
+
+
+
+        return UserMapper.mapToUserDto(user);
     }
 
     @Override

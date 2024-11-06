@@ -25,5 +25,9 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
 
+    private List<Integer> followers= new ArrayList<>();
+
+    private List<Integer> followings= new ArrayList<>();
+
 
 }

@@ -3,6 +3,9 @@ package com.example.Social.Media.Dto;
 
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -18,5 +21,19 @@ public class UserDto {
 
     private String email;
 
+    private List<Integer> followers= new ArrayList<>();
+
+//    private List<UserDto> followers = new ArrayList<>();  // Direct initialization
+
+    // Other fields and methods
+    public List<Integer> getFollowers() {
+        return followers;
+    }
+
+//    public void setFollowers(List<UserDto> followers) {
+//        this.followers = followers;
+//    }
+
+    private List<Integer> followings= new ArrayList<>();
 
 }

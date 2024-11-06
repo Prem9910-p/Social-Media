@@ -8,9 +8,9 @@ import java.util.List;
 public interface UserService {
 
     public UserDto registerUser(UserDto userDto);
-    public UserDto findUserById(Integer UserId);
+    public UserDto findUserById(Integer userId);
     public UserDto findUserByEmail(String email);
-    public UserDto followUser(Integer userId1, Integer UserId2);
+    public UserDto followUser(Integer userId1, Integer userId2);
     public UserDto updateUser(UserDto userDto);
     public List<UserDto> searchUser(String query);
 }

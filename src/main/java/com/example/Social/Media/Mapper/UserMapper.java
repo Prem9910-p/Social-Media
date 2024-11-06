@@ -11,6 +11,8 @@ public class UserMapper {
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
                 .email(user.getEmail())
+                .followers(user.getFollowers())
+                .followings(user.getFollowings())
                 .build();
     }
 
@@ -20,6 +22,8 @@ public class UserMapper {
                 .firstName(userDto.getFirstName())
                 .lastName(userDto.getLastName())
                 .email(userDto.getEmail())
+                .followers(userDto.getFollowers())
+                .followings(userDto.getFollowings())
                 .build();
     }
 }

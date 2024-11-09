@@ -11,6 +11,9 @@ public interface UserService {
     public UserDto findUserById(Integer userId);
     public UserDto findUserByEmail(String email);
     public UserDto followUser(Integer userId1, Integer userId2);
-    public UserDto updateUser(UserDto userDto);
+    public List<UserDto> findAllUser();
+    public UserDto updateUser(UserDto userDto, Integer userId );
     public List<UserDto> searchUser(String query);
+    public String deleteUserById(Integer userId);
+    public String deleteAll();
 }

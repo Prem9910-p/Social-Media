@@ -6,11 +6,11 @@ import com.example.Social.Media.Exception.UserAlreadyExistsException;
 import com.example.Social.Media.Mapper.UserMapper;
 import com.example.Social.Media.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImplements implements UserService{
@@ -59,6 +59,17 @@ public class UserServiceImplements implements UserService{
     public UserDto followUser(Integer userId1, Integer userId2) {
         UserDto userDto1=findUserById(userId1);
         UserDto userDto2=findUserById(userId2);
+//
+//         User user1=UserMapper.mapToUser(userDto1);
+//         User user2=UserMapper.mapToUser(userDto2);
+//
+//         user2.getFollowers().add(user1.getId());
+//         user1.getFollowers().add(user2.getId());
+//
+//         userRepository.save(user1);
+//         userRepository.save(user2);
+//         return UserMapper.mapToUserDto(user1);
+
 
         userDto2.getFollowers().add(userDto1.getId());
         userDto1.getFollowings().add(userDto2.getId());
@@ -73,12 +84,49 @@ public class UserServiceImplements implements UserService{
     }
 
     @Override
-    public UserDto updateUser(UserDto userDto) {
-        return null;
+    public List<UserDto> findAllUser() {
+       List<User> users= userRepository.findAll();
+        return users.stream().map((user) -> UserMapper.mapToUserDto(user)).collect(Collectors.toList());
     }
 
     @Override
+    public UserDto updateUser(UserDto userDto, Integer userId) {
+        UserDto userDto1=findUserById(userId);
+
+        userDto1.setFirstName(userDto.getFirstName());
+        userDto1.setLastName(userDto.getLastName());
+
+        if(userRepository.findByEmail(userDto.getEmail()).isPresent()){
+            throw new UserAlreadyExistsException("Email already exists : "+userDto.getEmail());
+        }
+
+
+        userDto1.setEmail(userDto.getEmail());
+        userDto1.setFollowings(userDto.getFollowings());
+        userDto1.setFollowers(userDto.getFollowers());
+        User user=UserMapper.mapToUser(userDto1);
+           User savedUser=userRepository.save(user);
+
+        return UserMapper.mapToUserDto(savedUser);
+    }
+
+
+    @Override
     public List<UserDto> searchUser(String query) {
-        return List.of();
+        List<User> userList=userRepository.searchUser(query);
+
+        return userList.stream().map((user) -> UserMapper.mapToUserDto(user)).collect(Collectors.toList());
+    }
+
+    @Override
+    public String deleteUserById(Integer userId) {
+            userRepository.deleteById(userId);
+        return "user deleted";
+    }
+
+    @Override
+    public String deleteAll() {
+        userRepository.deleteAll();
+        return "Deleted All user";
     }
 }

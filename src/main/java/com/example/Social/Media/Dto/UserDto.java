@@ -26,9 +26,9 @@ public class UserDto {
 //    private List<UserDto> followers = new ArrayList<>();  // Direct initialization
 
     // Other fields and methods
-    public List<Integer> getFollowers() {
-        return followers;
-    }
+//    public List<Integer> getFollowers() {
+//        return followers;
+//    }
 
 //    public void setFollowers(List<UserDto> followers) {
 //        this.followers = followers;

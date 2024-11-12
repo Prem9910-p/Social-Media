@@ -59,16 +59,7 @@ public class UserServiceImplements implements UserService{
     public UserDto followUser(Integer userId1, Integer userId2) {
         UserDto userDto1=findUserById(userId1);
         UserDto userDto2=findUserById(userId2);
-//
-//         User user1=UserMapper.mapToUser(userDto1);
-//         User user2=UserMapper.mapToUser(userDto2);
-//
-//         user2.getFollowers().add(user1.getId());
-//         user1.getFollowers().add(user2.getId());
-//
-//         userRepository.save(user1);
-//         userRepository.save(user2);
-//         return UserMapper.mapToUserDto(user1);
+
 
 
         userDto2.getFollowers().add(userDto1.getId());

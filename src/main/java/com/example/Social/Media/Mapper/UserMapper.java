@@ -13,6 +13,7 @@ public class UserMapper {
                 .email(user.getEmail())
                 .followers(user.getFollowers())
                 .followings(user.getFollowings())
+                .savedPost(user.getSavedPost())
                 .build();
     }
 
@@ -24,6 +25,7 @@ public class UserMapper {
                 .email(userDto.getEmail())
                 .followers(userDto.getFollowers())
                 .followings(userDto.getFollowings())
+                .savedPost(userDto.getSavedPost())
                 .build();
     }
 }

@@ -1,5 +1,6 @@
 package com.example.Social.Media.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 

@@ -6,17 +6,7 @@ import com.example.Social.Media.Entity.Post;
 import java.time.LocalDateTime;
 
 public class PostMapper {
-    public static Post mapToPost(PostDto postDto){
-        return Post.builder()
-                .id(postDto.getId())
-                .caption(postDto.getCaption())
-                .image(postDto.getImage())
-                .video(postDto.getVideo())
-                .user(postDto.getUser())
-                .createdAt(postDto.getCreatedAt())
-                .liked(postDto.getLiked())
-                .build();
-    }
+
 
     public static PostDto mapToPostDto(Post post){
         return PostDto.builder()
@@ -29,4 +19,17 @@ public class PostMapper {
                 .liked(post.getLiked())
                 .build();
     }
+    public static Post mapToPost(PostDto postDto){
+        return Post.builder()
+                .id(postDto.getId())
+                .caption(postDto.getCaption())
+                .image(postDto.getImage())
+                .video(postDto.getVideo())
+                .user(postDto.getUser())
+                .createdAt(postDto.getCreatedAt())
+                .liked(postDto.getLiked())
+                .build();
+    }
+
+
 }

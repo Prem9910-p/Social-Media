@@ -1,5 +1,6 @@
 package com.example.Social.Media.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -30,6 +31,10 @@ public class User {
 
 
     private List<Integer> followings= new ArrayList<>();
+
+    @ManyToMany
+    @JsonIgnore
+    private List<Post> savedPost= new ArrayList<>();
 
 
 }
